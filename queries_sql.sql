@@ -1,4 +1,4 @@
-CREATE TABLE alunos.alunos (
+CREATE TABLE public.alunos (
 	id serial4 NOT NULL,
 	nome text NOT NULL,
 	idade int8 NULL,
@@ -7,108 +7,108 @@ CREATE TABLE alunos.alunos (
 	CONSTRAINT alunos_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE alunos.escolas (
+CREATE TABLE public.escolas (
 	id serial4 NOT NULL,
 	nome text NOT NULL,
 	parent_id int8 NOT NULL,
 	tipo text NOT NULL,
 	deleted_at timestamp NULL,
 	CONSTRAINT escolas_pkey PRIMARY KEY (id),
-	CONSTRAINT escolas_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES alunos.escolas(id)
+	CONSTRAINT escolas_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES public.escolas(id)
 );
 
-CREATE TABLE alunos.turmas (
+CREATE TABLE public.turmas (
 	id serial4 NOT NULL,
 	nome text NOT NULL,
 	id_escola int8 NOT NULL,
 	status text NOT NULL,
 	deleted_at timestamp NULL,
 	CONSTRAINT turmas_pkey PRIMARY KEY (id),
-	CONSTRAINT turmas_id_escola_fkey FOREIGN KEY (id_escola) REFERENCES alunos.escolas(id)
+	CONSTRAINT turmas_id_escola_fkey FOREIGN KEY (id_escola) REFERENCES public.escolas(id)
 );
 
-CREATE TABLE alunos.matriculas (
+CREATE TABLE public.matriculas (
 	id serial4 NOT NULL,
 	id_aluno int8 NOT NULL,
 	status text NOT NULL,
 	id_turma int8 NOT NULL,
 	deleted_at varchar NULL,
 	CONSTRAINT matriculas_pkey PRIMARY KEY (id),
-	CONSTRAINT matriculas_id_aluno_fkey FOREIGN KEY (id_aluno) REFERENCES alunos.alunos(id),
-	CONSTRAINT matriculas_id_turma_fkey FOREIGN KEY (id_turma) REFERENCES alunos.turmas(id)
+	CONSTRAINT matriculas_id_aluno_fkey FOREIGN KEY (id_aluno) REFERENCES public.alunos(id),
+	CONSTRAINT matriculas_id_turma_fkey FOREIGN KEY (id_turma) REFERENCES public.turmas(id)
 );
 
-INSERT INTO alunos.alunos (nome, idade, endereco)
+INSERT INTO public.alunos (nome, idade, endereco)
 VALUES ('Felipe Silva Bettecher', 30, 'Vitoria'),
 	   ('Thais Ohnesorge Silva', 24, 'Serra'),
 	   ('Jessica Montenegro', 30, 'Maceió'),
 	   ('Francicleia Cardoso', 28, 'São Luis');
 	   
-INSERT INTO alunos.escolas (nome, parent_id, tipo)
-VALUES('Brasil', 1, 'pais'),
-	  ('Acre', 2, 'estado'),
-	  ('Alagoas', 3, 'estado'),
-	  ('Amapá', 4, 'estado'),
-	  ('Amazonas', 5, 'estado'),
-	  ('Bahia', 6, 'estado'),
-	  ('Ceará', 7, 'estado'),
-	  ('Distrito Federal', 8, 'estado'),
-	  ('Espírito Santo', 9, 'estado'),
-	  ('Goiás', 10, 'estado'),
-	  ('Maranhão', 11, 'estado'),
-	  ('Mato Grosso', 12, 'estado'),
-	  ('Mato Grosso do Sul', 13, 'estado'),
-	  ('Minas Gerais', 14, 'estado'),
-	  ('Pará', 15, 'estado'),
-	  ('Paraíba', 16, 'estado'),
-	  ('Paraná', 17, 'estado'),
-	  ('Pernambuco', 18, 'estado'),
-	  ('Piauí', 19, 'estado'),
-	  ('Rio de Janeiro', 20, 'estado'),
-	  ('Rio Grande do Norte', 21, 'estado'),
-	  ('Rio Grande do Sul', 22, 'estado'),
-	  ('Rondônia', 23, 'estado'),
-	  ('Roraima', 24, 'estado'),
-	  ('Santa Catarina', 25, 'estado'),
-	  ('São Paulo', 26, 'estado'),
-	  ('Sergipe', 27, 'estado'),
-	  ('Tocantins', 28, 'estado'),
-	  ('Rio Branco', 29, 'cidade'),
-	  ('Maceió', 30, 'cidade'),
-	  ('Macapá', 31, 'cidade'),
-	  ('Manaus', 32, 'cidade'),
-	  ('Salvador', 33, 'cidade'),
-	  ('Fortaleza', 34, 'cidade'),
-	  ('Brasília*', 35, 'cidade'),
-	  ('Vitória', 36, 'cidade'),
-	  ('Goiânia', 37, 'cidade'),
-	  ('São Luís', 38, 'cidade'),
-	  ('Cuiabá', 39, 'cidade'),
-	  ('Campo Grande', 40, 'cidade'),
-	  ('Belo Horizonte', 41, 'cidade'),
-	  ('Belém', 42, 'cidade'),
-	  ('João Pessoa', 43, 'cidade'),
-	  ('Curitiba', 44, 'cidade'),
-	  ('Recife', 45, 'cidade'),
-	  ('Teresina', 46, 'cidade'),
-	  ('Rio de Janeiro', 47, 'cidade'),
-	  ('Natal', 48, 'cidade'),
-	  ('Porto Alegre', 49, 'cidade'),
-	  ('Porto Velho', 50, 'cidade'),
-	  ('Boa Vista', 51, 'cidade'),
-	  ('Florianópolis', 52, 'cidade'),
-	  ('São Paulo', 53, 'cidade'),
-	  ('Aracaju', 54, 'cidade'),
-	  ('Palmas', 55, 'cidade');
+INSERT INTO public.escolas (nome, parent_id, tipo)
+VALUES('Brasil', -1, 'pais'),
+      ('Acre', 1, 'estado'),
+      ('Alagoas', 1, 'estado'),
+      ('Amapá', 1, 'estado'),
+      ('Amazonas', 1, 'estado'),
+      ('Bahia', 1, 'estado'),
+      ('Ceará', 1, 'estado'),
+      ('Distrito Federal', 1, 'estado'),
+      ('Espírito Santo', 1, 'estado'),
+      ('Goiás', 1, 'estado'),
+      ('Maranhão', 1, 'estado'),
+      ('Mato Grosso', 1, 'estado'),
+      ('Mato Grosso do Sul', 1, 'estado'),
+      ('Minas Gerais', 1, 'estado'),
+      ('Pará', 1, 'estado'),
+      ('Paraíba', 1, 'estado'),
+      ('Paraná', 1, 'estado'),
+      ('Pernambuco', 1, 'estado'),
+      ('Piauí', 1, 'estado'),
+      ('Rio de Janeiro', 1, 'estado'),
+      ('Rio Grande do Norte', 1, 'estado'),
+      ('Rio Grande do Sul', 1, 'estado'),
+      ('Rondônia', 1, 'estado'),
+      ('Roraima', 1, 'estado'),
+      ('Santa Catarina', 1, 'estado'),
+      ('São Paulo', 1, 'estado'),
+      ('Sergipe', 1, 'estado'),
+      ('Tocantins', 1, 'estado'),
+      ('Rio Branco', 2, 'cidade'),
+      ('Maceió', 3, 'cidade'),
+      ('Macapá', 4, 'cidade'),
+      ('Manaus', 5, 'cidade'),
+      ('Salvador', 6, 'cidade'),
+      ('Fortaleza', 7, 'cidade'),
+      ('Brasília*', 8, 'cidade'),
+      ('Vitória', 9, 'cidade'),
+      ('Goiânia', 10, 'cidade'),
+      ('São Luís', 11, 'cidade'),
+      ('Cuiabá', 12, 'cidade'),
+      ('Campo Grande', 13, 'cidade'),
+      ('Belo Horizonte', 14, 'cidade'),
+      ('Belém', 15, 'cidade'),
+      ('João Pessoa', 16, 'cidade'),
+      ('Curitiba', 17, 'cidade'),
+      ('Recife', 18, 'cidade'),
+      ('Teresina', 19, 'cidade'),
+      ('Rio de Janeiro', 20, 'cidade'),
+      ('Natal', 21, 'cidade'),
+      ('Porto Alegre', 22, 'cidade'),
+      ('Porto Velho', 23, 'cidade'),
+      ('Boa Vista', 24, 'cidade'),
+      ('Florianópolis', 25, 'cidade'),
+      ('São Paulo', 26, 'cidade'),
+      ('Aracaju', 27, 'cidade'),
+      ('Palmas', 28, 'cidade');
 
-INSERT INTO alunos.turmas (nome, id_escola, status)
+INSERT INTO public.turmas (nome, id_escola, status)
 VALUES ('Alicerce', 53, 'ativo'),
 	   ('Sindipetro', 36, 'ativo'),
 	   ('Marista', 30, 'ativo'),
 	   ('Darwin', 36, 'inativo'),
 	   ('Elite', 47, 'ativo');
 	   
-INSERT INTO alunos.matriculas (id_aluno, status, id_turma)
+INSERT INTO public.matriculas (id_aluno, status, id_turma)
 VALUES (1, 'ativo', 1),
 	   (2, 'ativo', 2),
 	   (3, 'ativo', 3),
