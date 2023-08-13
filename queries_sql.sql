@@ -41,8 +41,8 @@ CREATE TABLE public.matriculas (
 INSERT INTO public.alunos (nome, idade, endereco)
 VALUES ('Felipe Silva Bettecher', 30, 'Vitoria'),
 	   ('Thais Ohnesorge Silva', 24, 'Serra'),
-	   ('Jessica Montenegro', 30, 'Maceió'),
-	   ('Francicleia Cardoso', 28, 'São Luis');
+	   ('Jessica Montenegro', null, 'Maceió'),
+	   ('Francicleia Cardoso', null, 'São Luis');
 	   
 INSERT INTO public.escolas (nome, parent_id, tipo)
 VALUES('Brasil', -1, 'pais'),
